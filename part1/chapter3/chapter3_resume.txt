@@ -1,0 +1,1 @@
+This chapter is pretty much about comments and how to write them and use them. There's not any coding on this Chapter
