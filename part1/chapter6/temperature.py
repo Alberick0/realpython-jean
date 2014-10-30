@@ -7,7 +7,7 @@ def celsius(temp):
     return (temp * 9/5) + 32, temp
 
 fahrenheit = fahrenheit(72)
-print fahrenheit[1], "degrees F =", fahrenheit[0], "degrees C"
+print '{0} degress F = {1} degress C'.format(fahrenheit[1], fahrenheit[0])
 
 celsius = celsius(37)
-print celsius[1], "degrees C =", celsius[0], "degrees F"
+print '{0} degress C = {1} degress F'.format(celsius[1], celsius[0])
