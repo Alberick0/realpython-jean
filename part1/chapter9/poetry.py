@@ -10,8 +10,10 @@ types = [
 ]
 
 poem = [ [], [], [], [], [] ]
+vowels = 'a, e i, o ,u'
 
-def adder(i,amount):
+# this adds a word to the list in the current position of i
+def adder(i, amount):
     while len(poem[i]) < amount:
        word = random.choice(types[i])
 
@@ -19,6 +21,7 @@ def adder(i,amount):
            poem[i].append(word)
 
 
+# main function of the program this assembles the poem
 def makePoem():
     for i in range(len(types)):
         if i < 3:
@@ -28,14 +31,19 @@ def makePoem():
         else:
             adder(i, 1)
 
-    # 0 = nouns | 1 = verbs | 2 = adjectives | 3 = prepositions | 4 = Adverbs
-    return '''
-A {0[2][0]} {0[0][0]}
+    if poem[2][0][0] in vowels:
+        article = 'An'
+    else:
+        article = 'A'
 
-A {0[2][0]} {0[0][0]} {0[1][0]} {0[3][0]} the {0[2][1]} {0[0][1]}
+    # this returns the assembled poem
+    return '''
+{1} {0[2][0]} {0[0][0]}
+
+{1} {0[2][0]} {0[0][0]} {0[1][0]} {0[3][0]} the {0[2][1]} {0[0][1]}
 {0[4][0]}, the {0[0][0]} {0[1][1]}
 the {0[0][1]} {0[1][2]} {0[3][1]} a {0[2][1]} {0[0][2]}
-'''.format(poem)
+'''.format(poem, article)
 
 print makePoem()
 
