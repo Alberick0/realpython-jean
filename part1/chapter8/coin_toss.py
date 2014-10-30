@@ -9,11 +9,12 @@ for i in range(trial):
     flips += 1
 
     if randint(0,1) == 0:
-        flips += 1
-        while True:
+        while randint(0,1) == 0:
             flips += 1
-            if randint(0,1) == 1:
-                flips += 1
-                break
+        flips += 1
+    else:
+        while randint(0,1) == 1:
+            flips += 1
+        flips += 1
 
 print flips/trial
