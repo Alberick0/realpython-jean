@@ -1,19 +1,19 @@
 import os
 import glob
 
-myPath = '/home/alberick/Documents/python/books/realpython-jean/part1/book1-exercises/Course materials/Chapter 10/Practice files/images'
+my_path = '/home/alberick/Documents/python/books/realpython-jean/part1/book1-exercises/Course materials/Chapter 10/Practice files/images'
 
-for element in os.listdir(myPath):
-    print os.path.join(myPath, element)
+for element in os.listdir(my_path):
+    print os.path.join(my_path, element)
 
 print '\n'
 
-for element in  glob.glob(myPath + '/*.png'):
+for element in  glob.glob(my_path + '/*.png'):
     print element
 
 print '\n'
 
-for current_folder, subfolders, files_names in os.walk(myPath):
+for current_folder, subfolders, files_names in os.walk(my_path):
     for file_name in files_names:
         full_file = os.path.join(current_folder, file_name)
         if full_file.endswith('.png'):
@@ -22,7 +22,7 @@ for current_folder, subfolders, files_names in os.walk(myPath):
 
 print '\n'
 
-for current_folder, sub_folder, files_names in os.walk(myPath):
+for current_folder, sub_folder, files_names in os.walk(my_path):
     for file_name in files_names:
         if file_name.endswith('.jpg'):
             full_path = os.path.join(current_folder, file_name)
