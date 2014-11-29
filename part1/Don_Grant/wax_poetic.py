@@ -29,7 +29,7 @@ def validate_word(word_type, word_list):
         words_lists[word_list].append(word)
 
 
-# This will fill the lists aboves with random words from the db
+# This will fill the lists aboves with 10 random words from the db
 def generate_word_lists():
     for word_list in range(len(words_lists) - 2):
         while len(words_lists[word_list]) < 10:
