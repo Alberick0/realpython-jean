@@ -1,3 +1,6 @@
 [submodule "part1/book1-exercises"]
 	path = part1/book1-exercises
 	url = https://github.com/realpython/book1-exercises
+[submodule "part2/book2-exercises"]
+	path = part2/book2-exercises
+	url = https://github.com/realpython/book2-exercises.git
