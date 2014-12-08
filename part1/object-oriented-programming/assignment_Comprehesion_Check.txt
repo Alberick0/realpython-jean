@@ -1,0 +1,36 @@
+1. What’s a class?
+R: A class is a data structure that contains methods and attributes, used to define different things of an object
+
+2. What’s an instance?
+R: Is an object that has been declared as a class with the needed values.
+
+3. What’s the relationship between a class and an instance?
+R: A class is the mold and an instance is something made with this mold
+
+4. What’s the Python syntax used for defining a new class?
+R: class test(object):
+
+5. What’s the spelling convention for a class name?
+R: camel case starting with capital letter
+
+6. How do you instantiate, or create an instance of, a class?
+R: testing = test(value)
+
+7. How do you access the attributes and behaviors of a class instance?
+R: testing.tested() or testing.tested
+
+8. What’s a method?
+R: It's a function inside a class that performs different operations
+
+9. What’s the purpose of self ?
+R: self is an instance of the current class it purpose is to refer to the new object 
+
+10. What’s the purpose of the __init__ method?
+R: it's used to initialize the instance of a class
+
+11. Describe how inheritance helps prevent code duplication.
+R: It prevents it due to child class having access to parent methods or parent attributes
+
+12. Can child classes override properties of their parents?
+R: yes
+
