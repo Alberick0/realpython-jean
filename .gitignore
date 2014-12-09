@@ -55,3 +55,4 @@ target/
 
 # Other
 *.txt~
+.idea
