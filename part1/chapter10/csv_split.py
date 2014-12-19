@@ -39,7 +39,7 @@ def row_splitter(rows_split):
     start = 1
     end = rows_split
     
-    for chunk in range(len(temp_list)/rows_split):
+    for chunk in range(len(temp_list) / rows_split):
         chunks.append([])
         chunks[chunk].extend(temp_list[start:end + 1])
         start += rows_split
