@@ -103,7 +103,7 @@ class AllTests(unittest.TestCase):
     # test logout functionality
     def test_logged_in_users_can_logout(self):
         self.register('Carlos', 'Carlos@test.com', 'pass', 'pass')
-        self.login('Carlos', 'Pass')
+        self.login('Carlos', 'pass')
         response = self.logout()
         self.assertIn('You are logged out', response.data)
 
@@ -199,7 +199,7 @@ class AllTests(unittest.TestCase):
         self.create_admin_user()
         self.login('Super', 'super')
         self.app.get('tasks/', follow_redirects=True)
-        response = self.app.get('complete/1/', folow_redirects=True)
+        response = self.app.get('complete/1/', follow_redirects=True)
         self.assertNotIn("You can only update tasks that belong to you.", response.data)
 
     def test_admin_users_can_delete_tasks_that_are_not_created_by_them(self):
