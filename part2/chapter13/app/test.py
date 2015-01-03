@@ -48,6 +48,11 @@ class AllTests(unittest.TestCase):
         return self.app.post('add/', data=dict(name='Go to the bank', due_date='02/05/2014', priority='1',
                                                posted_date='02/04/2014', status='1'), follow_redirects=True)
 
+    def create_admin_user(self):
+        new_user = User(name='Super', email='super@test.com', password='pass', role='admin')
+        db.session.add(new_user)
+        db.session.commit()
+
     # each test should start with 'test'
     def test_user_setup(self):
         new_user = User("mherman", "michael@mherman.org", "michaelherman")
@@ -151,6 +156,62 @@ class AllTests(unittest.TestCase):
         self.app.get('tasks/', follow_redirects=True)
         response = self.app.get('complete/1/', follow_redirects=True)
         self.assertNotIn('marked as complete', response.data)
+
+    def test_user_registration_field_erros(self):
+        response = self.register('Test', 'test@test.com', 'pass', '')
+        self.assertIn('This field is required', response.data)
+
+    def test_users_cannot_complete_tasks_that_are_not_created_by_them(self):
+        self.create_user('JeanCA', 'JeanC@test.com', 'pass')
+        self.login('JeanCA', 'pass')
+        self.create_task()
+        self.logout()
+        self.create_user('CarlosA', 'Carlos@test.com', 'pass')
+        self.login('CarlosA', 'pass')
+        self.app.get('tasks/', follow_redirects=True)
+        response = self.app.get('complete/1/', follow_redirects=True)
+        self.assertIn('You can only update tasks that belong to you.', response.data)
+
+    def test_users_cannot_delete_tasks_that_are_not_created_by_them(self):
+        self.create_user('JeanCA', 'JeanC@test.com', 'pass')
+        self.login('JeanCA', 'pass')
+        self.create_task()
+        self.logout()
+        self.create_user('CarlosA', 'Carlos@test.com', 'pass')
+        self.login('CarlosA', 'pass')
+        self.app.get('tasks/', follow_redirects=True)
+        response = self.app.get('delete/1/', follow_redirects=True)
+        self.assertIn('You can only delete tasks that belong to you.', response.data)
+
+    def test_default_user_roles(self):
+        db.session.add(User("Teste", "tester@test.com", "pass"))
+        db.session.commit()
+        users = db.session.query(User).all()
+        print users
+        for user in users:
+            self.assertEquals(user.role, 'user')
+
+    def test_admin_users_can_complete_tasks_that_are_not_created_by_them(self):
+        self.create_user('JeanCA', 'JeanC@test.com', 'pass')
+        self.login('JeanCA', 'pass')
+        self.create_task()
+        self.logout()
+        self.create_admin_user()
+        self.login('Super', 'super')
+        self.app.get('tasks/', follow_redirects=True)
+        response = self.app.get('complete/1/', folow_redirects=True)
+        self.assertNotIn("You can only update tasks that belong to you.", response.data)
+
+    def test_admin_users_can_delete_tasks_that_are_not_created_by_them(self):
+        self.create_user('JeanCA', 'JeanC@test.com', 'pass')
+        self.login('JeanCA', 'pass')
+        self.create_task()
+        self.logout()
+        self.create_admin_user()
+        self.login('Super', 'super')
+        self.app.get('tasks/', follow_redirects=True)
+        response = self.app.get('delete/1/', follow_redirects=True)
+        self.assertNotIn("You can only delete tasks that belong to you.", response.data)
 
 
 if __name__ == "__main__":
