@@ -56,3 +56,5 @@ target/
 # Other
 *.txt~
 .idea
+part2/book2-exercises
+part1/book1-exercises
