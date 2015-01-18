@@ -290,5 +290,6 @@ class AllTests(unittest.TestCase):
         self.assertEquals(response.mimetype, 'application/json')
         self.assertIn('Element does not exist', response.data)
 
+
 if __name__ == "__main__":
     unittest.main()
