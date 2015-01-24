@@ -15,10 +15,13 @@ url = 'http://maps.googleapis.com/maps/api/directions/json?origin={origin}&desti
                                             mode=directions['mode'])
 
 response = requests.get(url)
-data = json.dumps(response.content, indent=4, sort_keys=True)
-print data
 
-# for route in data['routes']:
-#     for leg in route['legs']:
-#         for step in leg['steps']:
-#             print step['html_instructions']
+with open('google.json', 'wb') as gfile:
+    gfile.write(response.content)
+
+data = json.load(open('google.json'))
+
+for route in data['routes']:
+    for leg in route['legs']:
+        for step in leg['steps']:
+            print step['html_instructions']
