@@ -3,7 +3,7 @@ import json
 import requests
 import sqlite3
 
-KEY = 'pzcgvvzt4fsp52fw95mxs5aa'
+KEY = ''
 url = 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey={}'.format(KEY)
 
 data = requests.get(url)

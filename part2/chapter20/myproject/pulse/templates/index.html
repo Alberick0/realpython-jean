@@ -11,9 +11,10 @@
     <h1>check a pulse</h1>
     <h4>Just another Sentiment Analysis tool.</h4>
 
-    <form id="post_pulse" method="post" action="/pulses/pulser">
+    <form method="post" action="/pulses/pulser/">
+        {% csrf_token %}
         {{ form }}
-        <input type="submit"/>
+        <input type="submit" value="Submit"/>
     </form>
 </center>
 </body>
