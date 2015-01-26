@@ -14,9 +14,13 @@ $(function(){
             // display the value within the browser console
             console.log(input)
             // add the value to the dom
-            $('ol').append('<li><a href="">x</a>' + input + '</li>');
+            $('ol').append('<li><a href="">x</a> - ' + input + '</li>');
         }
         $('input').val('');
     });
+});
 
+$(document).on('click', 'a', function(e) {
+    e.preventDefault();
+    $(this).parent().remove();
 });
