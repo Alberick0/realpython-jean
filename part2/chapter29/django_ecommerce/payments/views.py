@@ -25,7 +25,7 @@ def sign_in(request):
             results = User.objects.filter(email=form.cleaned_data['email'])
             if len(results) == 1:
                 if results[0].check_password(form.cleaned_data['password']):
-                    request.session['user'] = request[0].pk
+                    request.session['user'] = results[0].pk
                     return HttpResponseRedirect('/')
                 else:
                     form.addError('Incorrect email address or password')
@@ -36,7 +36,7 @@ def sign_in(request):
 
     print form.non_field_errors()
 
-    return render_to_response('sign_in.html', {'form': form, 'user': user}, context_instace=RequestContext(request))
+    return render_to_response('sign_in.html', {'form': form, 'user': user}, context_instance=RequestContext(request))
 
 
 def sign_out(request):
